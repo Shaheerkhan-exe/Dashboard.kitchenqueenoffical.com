@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Menu · Kitchen Queen Admin</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
@@ -18,14 +19,14 @@
   <script src="assets/js/app.js"></script>
   <script>
     let cat = "All";
+    const CATS = ["All", "Deals", "Special Deals", "Daal & Sabzi", "Chicken", "Beef & Mutton", "Haleem", "Rice", "Sides & Raita", "Beverages", "Dessert"];
     function render() {
       const items = KQApp.menu().filter(m => cat === "All" || m.category === cat);
-      const cats = ["All", "Curries", "Rice", "BBQ", "Beverages"];
-      document.getElementById("cats").innerHTML = cats.map(c => `<button class="tab ${c===cat?"active":""}" data-c="${c}">${c}</button>`).join("");
+      document.getElementById("cats").innerHTML = CATS.map(c => `<button class="tab ${c===cat?"active":""}" data-c="${c}">${c}</button>`).join("");
       document.querySelectorAll("#cats .tab").forEach(b => b.onclick = () => { cat = b.dataset.c; render(); });
       document.getElementById("grid").innerHTML = items.map(m => `
         <article class="card menu-card">
-          <img src="${m.img}" alt="${m.name}" onerror="this.src='https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80'" />
+          <img src="${m.img}" alt="${m.name}" />
           <div class="menu-body">
             <h4>${m.name}</h4>
             <p style="margin:0 0 8px;color:var(--muted);font-size:13px">${m.desc}</p>

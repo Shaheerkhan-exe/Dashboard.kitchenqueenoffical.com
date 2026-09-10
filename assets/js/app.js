@@ -119,7 +119,7 @@
             <span>${online ? "Store Online" : "Store Offline"}</span>
             <span class="dot ${online ? "" : "off"}"></span>
           </div>
-          <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:10px" id="logoutBtn"><i class="bi bi-box-arrow-left"></i> Logout</button>
+          <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:10px;color:#fff;border-color:#333" id="logoutBtn"><i class="bi bi-box-arrow-left"></i> Logout</button>
         </div>
       </aside>`;
 
@@ -177,5 +177,35 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", injectLayout);
+  function bindTilt(root) {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const nodes = (root || document).querySelectorAll("[data-tilt], .card");
+    nodes.forEach((el) => {
+      if (el.dataset.tiltBound) return;
+      el.dataset.tiltBound = "1";
+      el.addEventListener("mousemove", (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        const rx = ((0.5 - y) * 10).toFixed(2);
+        const ry = ((x - 0.5) * 12).toFixed(2);
+        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px)`;
+      });
+      el.addEventListener("mouseleave", () => {
+        el.style.transform = "";
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    injectLayout();
+    bindTilt(document);
+    const pageRoot = document.getElementById("page-root");
+    if (pageRoot && window.MutationObserver) {
+      const mo = new MutationObserver(() => bindTilt(pageRoot));
+      mo.observe(pageRoot, { childList: true, subtree: true });
+    }
+  });
 })();
+

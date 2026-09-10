@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Analytics · Kitchen Queen Admin</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
@@ -43,9 +44,9 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/app.js"></script>
   <script>
-    const gold = "#f4c430", red = "#c41e3a";
-    Chart.defaults.color = "#c4b3a1";
-    Chart.defaults.borderColor = "rgba(244,196,48,.12)";
+    const gold = "#ffc107", accent = "#f3a812";
+    Chart.defaults.color = "#6f6f6f";
+    Chart.defaults.borderColor = "rgba(243,168,18,.18)";
     let salesChart;
     function makeSales(period) {
       const cfg = {
@@ -56,7 +57,7 @@
       if (salesChart) salesChart.destroy();
       salesChart = new Chart(document.getElementById("salesChart"), {
         type: cfg.type,
-        data: { labels: cfg.labels, datasets: [{ label: "Sales (PKR)", data: cfg.data, borderColor: gold, backgroundColor: period==="daily"?"rgba(244,196,48,.15)":"rgba(196,30,58,.55)", fill: true, tension: .35, borderRadius: 8 }] },
+        data: { labels: cfg.labels, datasets: [{ label: "Sales (PKR)", data: cfg.data, borderColor: accent, backgroundColor: period==="daily"?"rgba(255,193,7,.22)":"rgba(255,193,7,.75)", fill: true, tension: .35, borderRadius: 8 }] },
         options: { plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => v.toLocaleString() } } } }
       });
     }
@@ -71,12 +72,12 @@
       const online = KQ.ORDERS.filter(o => o.payment !== "COD" && o.status === "Completed").reduce((s,o)=>s+o.net,0);
       new Chart(document.getElementById("payChart"), {
         type: "doughnut",
-        data: { labels: ["Cash on Delivery", "EasyPaisa / JazzCash"], datasets: [{ data: [cash || 3200, online || 5100], backgroundColor: [gold, red], borderWidth: 0 }] },
+        data: { labels: ["Cash on Delivery", "EasyPaisa / JazzCash"], datasets: [{ data: [cash || 3200, online || 5100], backgroundColor: [gold, accent], borderWidth: 0 }] },
         options: { plugins: { legend: { position: "bottom" } } }
       });
       new Chart(document.getElementById("peakChart"), {
         type: "bar",
-        data: { labels: [...Array(24)].map((_,i)=>i+":00"), datasets: [{ label: "Orders", data: KQ.PEAK_HOURS, backgroundColor: KQ.PEAK_HOURS.map(v => v>24?red:gold) }] },
+        data: { labels: [...Array(24)].map((_,i)=>i+":00"), datasets: [{ label: "Orders", data: KQ.PEAK_HOURS, backgroundColor: KQ.PEAK_HOURS.map(v => v>24?"#e03131":gold) }] },
         options: { plugins: { legend: { display: false } }, scales: { x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 12 } } } }
       });
       const top = [...KQApp.menu()].sort((a,b)=>b.sold-a.sold).slice(0,8);

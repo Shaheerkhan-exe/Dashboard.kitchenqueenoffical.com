@@ -3,37 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register · Kitchen Queen Admin</title>
+  <title>Create Admin · Kitchen Queen</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
-<body>
-  <div class="auth-page">
-    <div class="auth-card">
-      <div class="brand-row">
-        <img src="../images/logo.svg" alt="Kitchen Queen" />
-        <div>
-          <h1>Kitchen Queen</h1>
-          <p>Admin first setup</p>
-        </div>
-      </div>
-      <h2>Create admin account</h2>
-      <p class="sub">Email and password sirf pehli dafa setup ke liye.</p>
-      <form id="regForm">
-        <div class="field">
-          <label>Email</label>
-          <input type="email" id="email" required placeholder="queen@kitchenqueen.pk" />
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input type="password" id="password" required minlength="6" placeholder="Min 6 characters" />
-        </div>
-        <button class="btn btn-gold" type="submit">Register & Continue</button>
-      </form>
-      <div class="auth-foot">Already registered? <a href="login.html">Login</a></div>
+<body class="auth-body">
+  <div class="auth-stage">
+    <div class="auth-backdrop" aria-hidden="true">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="orb orb-c"></div>
+      <div class="ring ring-a"></div>
+      <div class="ring ring-b"></div>
+      <div class="grid-glow"></div>
     </div>
+
+    <header class="auth-brandbar">
+      <p class="eyebrow">First-time setup</p>
+      <h1>Create the kitchen admin</h1>
+      <p class="lede">One administrator account controls menu stock, order flow and store hours.</p>
+    </header>
+
+    <section class="auth-panel">
+      <div class="auth-card glass-3d" data-tilt>
+        <span class="admin-chip"><i class="bi bi-person-badge-fill"></i> New administrator</span>
+        <div class="brand-row">
+          <img src="../images/logo.svg" alt="Kitchen Queen" />
+          <div>
+            <h1>Kitchen Queen</h1>
+            <p>Admin first setup</p>
+          </div>
+        </div>
+        <h2>Create admin account</h2>
+        <p class="sub">Email and password are used only for the first-time setup.</p>
+        <form id="regForm">
+          <div class="field">
+            <label>Admin Email</label>
+            <input type="email" id="email" required placeholder="queen@kitchenqueen.pk" />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="password" required minlength="6" placeholder="Minimum 6 characters" />
+          </div>
+          <button class="btn btn-gold" type="submit">Register & Continue</button>
+        </form>
+        <div class="auth-foot">Already registered? <a href="login.html">Go to admin login</a></div>
+      </div>
+    </section>
+
+    <footer class="auth-meta">
+      <div><strong>Email + password</strong><span>Used only for this desk</span></div>
+      <div><strong>Then OTP login</strong><span>WhatsApp verification</span></div>
+    </footer>
   </div>
   <script src="../assets/js/data.js"></script>
   <script src="../assets/js/app.js"></script>
@@ -44,7 +68,7 @@
       const password = document.getElementById("password").value;
       localStorage.setItem("kq_account", JSON.stringify({ email, password }));
       localStorage.removeItem("kq_admin_session");
-      alert("Account created. Ab login karein.");
+      alert("Account created. Please sign in with your admin details.");
       location.href = "login.html";
     });
   </script>

@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Finance · Kitchen Queen Admin</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
@@ -55,7 +56,7 @@
       document.getElementById("pdfBtn").onclick = () => {
         const w = window.open("", "_blank");
         w.document.write(`<!DOCTYPE html><html><head><title>Invoice</title>
-          <style>body{font-family:Georgia,serif;padding:32px;color:#2a160c}h1{color:#c41e3a}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border-bottom:1px solid #eee;padding:8px;text-align:left}</style></head><body>
+          <style>body{font-family:Georgia,serif;padding:32px;color:#111}h1{color:#f3a812}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border-bottom:1px solid #eee;padding:8px;text-align:left}</style></head><body>
           <h1>Kitchen Queen</h1><p>North Nazimabad, Karachi<br>Invoice pack · ${new Date().toLocaleDateString()}</p>
           <table><tr><th>Order</th><th>Customer</th><th>Payment</th><th>Net</th></tr>
           ${done.map(o=>`<tr><td>${o.id}</td><td>${o.customer}</td><td>${o.payment}</td><td>PKR ${o.net}</td></tr>`).join("")}

@@ -2,28 +2,41 @@
 window.KQ = window.KQ || {};
 
 KQ.MENU = [
-  { id: "m1", name: "Fry Daal Mash", category: "Curries", price: 420, stock: true, sold: 86, revenue: 36120, img: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80", desc: "Street-style fried mash daal with tadka" },
-  { id: "m2", name: "Chicken Keema Karahi", category: "Curries", price: 890, stock: true, sold: 64, revenue: 56960, img: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80", desc: "Minced chicken karahi, home-style masala" },
-  { id: "m3", name: "Chicken Aloo Salan", category: "Curries", price: 750, stock: true, sold: 91, revenue: 68250, img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80", desc: "Comfort chicken & potato curry" },
-  { id: "m4", name: "Mutton Bhuna Gosht", category: "Curries", price: 1450, stock: true, sold: 42, revenue: 60900, img: "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=600&q=80", desc: "Slow-cooked bhuna mutton" },
-  { id: "m5", name: "Shimla Mirch Qeema", category: "Curries", price: 820, stock: false, sold: 38, revenue: 31160, img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80", desc: "Capsicum keema with whole spices" },
-  { id: "m6", name: "Chicken Karahi", category: "Curries", price: 980, stock: true, sold: 77, revenue: 75460, img: "https://images.unsplash.com/photo-1603262119260-3048fc786038?auto=format&fit=crop&w=600&q=80", desc: "Classic wok-tossed chicken karahi" },
-  { id: "m7", name: "Beef Nihari", category: "Curries", price: 780, stock: true, sold: 55, revenue: 42900, img: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80", desc: "Overnight slow nihari with nalli" },
-  { id: "m8", name: "Chicken Handi", category: "Curries", price: 920, stock: true, sold: 49, revenue: 45080, img: "https://images.unsplash.com/photo-1631452180519-c014fe946bcc?auto=format&fit=crop&w=600&q=80", desc: "Creamy handi gravy chicken" },
-  { id: "m9", name: "Chicken Biryani", category: "Rice", price: 650, stock: true, sold: 112, revenue: 72800, img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80", desc: "Layered dum biryani" },
-  { id: "m10", name: "Chana Pulao", category: "Rice", price: 380, stock: true, sold: 58, revenue: 22040, img: "https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=600&q=80", desc: "Aromatic chickpea pulao" },
-  { id: "m11", name: "Jeera Rice", category: "Rice", price: 220, stock: true, sold: 40, revenue: 8800, img: "https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?auto=format&fit=crop&w=600&q=80", desc: "Cumin tempered basmati" },
-  { id: "m12", name: "Chicken Pulao", category: "Rice", price: 520, stock: true, sold: 33, revenue: 17160, img: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=600&q=80", desc: "Home-style yakhni pulao" },
-  { id: "m13", name: "Seekh Kabab (4 pcs)", category: "BBQ", price: 560, stock: true, sold: 71, revenue: 39760, img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80", desc: "Charcoal seekh kabab" },
-  { id: "m14", name: "Chicken Tikka", category: "BBQ", price: 720, stock: true, sold: 66, revenue: 47520, img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80", desc: "Tandoori chicken tikka" },
-  { id: "m15", name: "Malai Boti", category: "BBQ", price: 780, stock: false, sold: 29, revenue: 22620, img: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80", desc: "Creamy malai chicken boti" },
-  { id: "m16", name: "Mixed BBQ Platter", category: "BBQ", price: 1890, stock: true, sold: 18, revenue: 34020, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80", desc: "Seekh, tikka & boti platter" },
-  { id: "m17", name: "Baigan Raita", category: "Beverages", price: 180, stock: true, sold: 47, revenue: 8460, img: "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=600&q=80", desc: "Smoky baigan raita" },
-  { id: "m18", name: "Mint Lassi", category: "Beverages", price: 160, stock: true, sold: 54, revenue: 8640, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80", desc: "Chilled sweet mint lassi" },
-  { id: "m19", name: "Doodh Patti Chai", category: "Beverages", price: 90, stock: true, sold: 120, revenue: 10800, img: "https://images.unsplash.com/photo-1571934811356-5cc061b6821e?auto=format&fit=crop&w=600&q=80", desc: "Strong home-style chai" },
-  { id: "m20", name: "Fresh Salad", category: "Beverages", price: 120, stock: true, sold: 61, revenue: 7320, img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80", desc: "Kachumber salad" },
-  { id: "m21", name: "Tandoori Paratha", category: "Rice", price: 80, stock: true, sold: 140, revenue: 11200, img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80", desc: "Flaky tandoor paratha" },
-  { id: "m22", name: "Arvi Gosht", category: "Curries", price: 980, stock: true, sold: 24, revenue: 23520, img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80", desc: "Colocasia mutton curry" }
+  { id: "d1", name: "Friday Family Deal", category: "Deals", price: 1250, stock: true, sold: 48, revenue: 60000, img: "images/chicken biryani.png", desc: "Chicken Biryani (2 servings) + Salad + Raita + 1.5L Cold Drink." },
+  { id: "d2", name: "Home Kitchen Box", category: "Deals", price: 1250, stock: true, sold: 36, revenue: 45000, img: "images/Daal Chawal.jpg", desc: "Any daal + any salan + white rice + 4 roti — a full desi spread." },
+  { id: "d3", name: "Yellow Daal Chawal with 1 Shami", category: "Daal & Sabzi", price: 450, stock: true, sold: 112, revenue: 50400, img: "images/Yellow daal.png", desc: "Ghee-tarka moong daal served with one hand-pressed beef shami kabab." },
+  { id: "d4", name: "Lauki Ki Sabzi", category: "Daal & Sabzi", price: 260, stock: true, sold: 41, revenue: 10660, img: "images/Lauki-Sabzi.png", desc: "Bottle gourd slow-cooked in tomato, garlic and desi masala." },
+  { id: "d5", name: "Moong Masoor Ki Daal", category: "Daal & Sabzi", price: 280, stock: true, sold: 67, revenue: 18760, img: "images/Moong masoor daal.png", desc: "Moong and masoor cooked together, finished with a sizzling zeera tarka." },
+  { id: "d6", name: "Daal Palak", category: "Daal & Sabzi", price: 300, stock: true, sold: 54, revenue: 16200, img: "images/Daal-Palak.jpg", desc: "Lentils folded through fresh spinach with garlic and green chilli." },
+  { id: "d7", name: "Kali Daal", category: "Daal & Sabzi", price: 300, stock: true, sold: 58, revenue: 17400, img: "images/kali daal.png", desc: "Daal maash simmered overnight on low flame with butter and cream." },
+  { id: "d8", name: "Bhindi Sabzi", category: "Daal & Sabzi", price: 320, stock: true, sold: 49, revenue: 15680, img: "images/bhindi sabzi.png", desc: "Crisp okra bhujia with onion, tomato and hand-crushed spice." },
+  { id: "d9", name: "Chicken Karahi", category: "Chicken", price: 850, stock: true, sold: 91, revenue: 77350, img: "images/karahi.jpg", desc: "Wok-tossed chicken in tomato, ginger and green chilli, finished with coriander." },
+  { id: "d10", name: "Chicken Chana Daal", category: "Chicken", price: 450, stock: true, sold: 62, revenue: 27900, img: "images/chicken chana.png", desc: "Chicken slow-cooked with chana daal until the gravy turns thick and glossy." },
+  { id: "d11", name: "Chicken Aloo Salan", category: "Chicken", price: 450, stock: true, sold: 88, revenue: 39600, img: "images/chicken-aloo-salan.png", desc: "Everyday Karachi favourite — chicken and potato in a light red salan." },
+  { id: "d12", name: "Beef Bhuna Gosht", category: "Beef & Mutton", price: 600, stock: true, sold: 73, revenue: 43800, img: "images/bhuna gohst.png", desc: "Beef cooked down for an hour until the masala clings to every piece." },
+  { id: "d13", name: "Chicken Qorma", category: "Chicken", price: 450, stock: true, sold: 64, revenue: 28800, img: "images/chicken qourma.png", desc: "Slow-cooked chicken in a silky fried-onion and yogurt qorma." },
+  { id: "d14", name: "Arvi Gosht", category: "Beef & Mutton", price: 450, stock: true, sold: 39, revenue: 17550, img: "images/Arvi.png", desc: "Tender mutton and arvi in a rich brown gravy — a Sunday classic." },
+  { id: "d15", name: "Aloo Gosht", category: "Beef & Mutton", price: 450, stock: true, sold: 57, revenue: 25650, img: "images/Aloo gohst.png", desc: "Mutton and potato simmered together in traditional desi masala." },
+  { id: "d16", name: "Qeema Aloo", category: "Beef & Mutton", price: 450, stock: true, sold: 61, revenue: 27450, img: "images/keema-Aaloo.png", desc: "Minced beef cooked with soft potato cubes, whole spice and green chilli." },
+  { id: "d17", name: "Beef Haleem", category: "Haleem", price: 480, stock: true, sold: 84, revenue: 40320, img: "images/beef haleem.png", desc: "Seven-hour stone-ground wheat and lentils with shredded beef and crisp onion." },
+  { id: "d18", name: "Chicken Haleem", category: "Haleem", price: 480, stock: true, sold: 52, revenue: 24960, img: "images/chicken haleem.png", desc: "Lighter haleem with shredded chicken, ginger julienne and lemon on the side." },
+  { id: "d19", name: "White Rice", category: "Rice", price: 250, stock: true, sold: 96, revenue: 24000, img: "images/plain-white-rice.jpg", desc: "Steamed long-grain basmati, separated grain by grain." },
+  { id: "d20", name: "Daal Chawal", category: "Rice", price: 350, stock: true, sold: 108, revenue: 37800, img: "images/Daal Chawal.jpg", desc: "The ultimate comfort plate — tarka daal poured over hot white rice." },
+  { id: "d21", name: "Chicken Biryani", category: "Rice", price: 350, stock: true, sold: 140, revenue: 49000, img: "images/chicken biryani.png", desc: "Basmati layered with masala chicken, kewra, aloo and fried onion." },
+  { id: "d22", name: "Egg Khagina", category: "Sides & Raita", price: 300, stock: true, sold: 44, revenue: 13200, img: "images/khagina.png", desc: "Desi scrambled eggs with tomato, onion and green chilli." },
+  { id: "d23", name: "Shami Kabab (6 pcs)", category: "Sides & Raita", price: 500, stock: true, sold: 70, revenue: 35000, img: "images/shami.png", desc: "Melt-in-mouth beef and chana daal patties, pan-seared in ghee." },
+  { id: "d24", name: "Dahi Phulki with Tarka", category: "Sides & Raita", price: 280, stock: true, sold: 38, revenue: 10640, img: "images/dahi phulki.png", desc: "Soft phulki in whisked yoghurt with a red chilli and curry-leaf tarka." },
+  { id: "d25", name: "Sweet Dahi Phulki", category: "Sides & Raita", price: 280, stock: true, sold: 33, revenue: 9240, img: "images/Sweet phulki.png", desc: "Sweetened yoghurt, soft phulki and mint — cooling and mildly sweet." },
+  { id: "d26", name: "Baingan Ka Raita", category: "Sides & Raita", price: 280, stock: true, sold: 47, revenue: 13160, img: "images/baingan raita.png", desc: "Roasted aubergine whisked into yoghurt with zeera and black salt." },
+  { id: "d27", name: "Tandoori Naan (4 pcs)", category: "Sides & Raita", price: 200, stock: true, sold: 125, revenue: 25000, img: "images/naan.jpg", desc: "Fresh from the clay oven, brushed with butter." },
+  { id: "d32", name: "Homemade Chapati (4 pcs)", category: "Sides & Raita", price: 120, stock: true, sold: 132, revenue: 15840, img: "images/chapati.png", desc: "Soft homemade whole-wheat chapati, cooked on tawa and served hot." },
+  { id: "d28", name: "Cold Drink", category: "Beverages", price: 150, stock: true, sold: 98, revenue: 14700, img: "images/pepsi.avif", desc: "345ml chilled bottle — your choice of flavour." },
+  { id: "d29", name: "Lassi", category: "Beverages", price: 250, stock: true, sold: 56, revenue: 14000, img: "images/lassi.png", desc: "Hand-churned yoghurt lassi — sweet or salted, served ice cold." },
+  { id: "d30", name: "Mango Milk Shake", category: "Beverages", price: 250, stock: true, sold: 42, revenue: 10500, img: "images/mango.png", desc: "Thick shake blended with fresh Sindhri mango pulp and chilled milk." },
+  { id: "d31", name: "Shahi Kheer", category: "Dessert", price: 180, stock: true, sold: 63, revenue: 11340, img: "images/kheer.png", desc: "Slow-reduced rice pudding with cardamom, pistachio and almond flakes." },
+  { id: "d35", name: "1.5L Cold Drink", category: "Beverages", price: 250, stock: true, sold: 51, revenue: 12750, img: "images/pepsi 1.5 L.png", desc: "1.5 litre chilled bottle, as listed on the Wow Deals banner." },
+  { id: "d36", name: "Wow Deal", category: "Special Deals", price: 1250, stock: true, sold: 22, revenue: 27500, img: "images/chicken biryani.png", desc: "1 Chicken Biryani + 1 Chicken Karahi + 2 Naan + Salad + Raita + 1L Pepsi. Sunday only." },
+  { id: "d37", name: "Weekend Deal", category: "Special Deals", price: 1450, stock: false, sold: 18, revenue: 26100, img: "images/chicken qourma.png", desc: "1 Beef Biryani + 1 Chicken Qorma + 2 Naan + Salad + Raita. Sunday only." }
 ];
 
 KQ.ORDERS = [
@@ -31,11 +44,11 @@ KQ.ORDERS = [
     id: "KQ-1042", date: "2026-09-10T13:40:00", customer: "Ayesha Khan", phone: "0300-1112233",
     status: "Preparing", payment: "COD", type: "Delivery",
     items: [
-      { name: "Chicken Aloo Salan", qty: 1, price: 750, extra: "Extra gravy" },
-      { name: "Tandoori Paratha", qty: 4, price: 80, extra: "" },
-      { name: "Baigan Raita", qty: 1, price: 180, extra: "" }
+      { name: "Chicken Aloo Salan", qty: 1, price: 450, extra: "Extra gravy" },
+      { name: "Homemade Chapati (4 pcs)", qty: 1, price: 120, extra: "" },
+      { name: "Baingan Ka Raita", qty: 1, price: 280, extra: "" }
     ],
-    subtotal: 1250, discount: 50, delivery: 80, tax: 64, net: 1344,
+    subtotal: 850, discount: 0, delivery: 80, tax: 46, net: 976,
     address: "House 12, Block D, North Nazimabad, Karachi",
     timeline: { received: "13:40", accepted: "13:42", prepared: "", delivered: "" }
   },
@@ -43,10 +56,10 @@ KQ.ORDERS = [
     id: "KQ-1041", date: "2026-09-10T12:15:00", customer: "Kamran Ali", phone: "0321-5556677",
     status: "In Delivery", payment: "JazzCash", type: "Delivery",
     items: [
-      { name: "Mutton Bhuna Gosht", qty: 1, price: 1450, extra: "Bone-in" },
-      { name: "Jeera Rice", qty: 1, price: 220, extra: "" }
+      { name: "Beef Bhuna Gosht", qty: 1, price: 600, extra: "Bone-in" },
+      { name: "White Rice", qty: 1, price: 250, extra: "" }
     ],
-    subtotal: 1670, discount: 0, delivery: 80, tax: 87, net: 1837,
+    subtotal: 850, discount: 0, delivery: 80, tax: 46, net: 976,
     address: "Flat 4, Block A, North Nazimabad",
     timeline: { received: "12:15", accepted: "12:16", prepared: "12:55", delivered: "" }
   },
@@ -54,10 +67,10 @@ KQ.ORDERS = [
     id: "KQ-1040", date: "2026-09-10T11:02:00", customer: "Zoja Ahmed", phone: "0333-2223344",
     status: "Completed", payment: "EasyPaisa", type: "Pickup",
     items: [
-      { name: "Chicken Biryani", qty: 2, price: 650, extra: "" },
-      { name: "Mint Lassi", qty: 2, price: 160, extra: "" }
+      { name: "Chicken Biryani", qty: 2, price: 350, extra: "" },
+      { name: "Lassi", qty: 2, price: 250, extra: "" }
     ],
-    subtotal: 1620, discount: 100, delivery: 0, tax: 76, net: 1596,
+    subtotal: 1200, discount: 50, delivery: 0, tax: 57, net: 1207,
     address: "Pickup — Kitchen Queen counter",
     timeline: { received: "11:02", accepted: "11:03", prepared: "11:35", delivered: "11:48" }
   },
@@ -65,10 +78,10 @@ KQ.ORDERS = [
     id: "KQ-1039", date: "2026-09-10T10:20:00", customer: "Ubair Sheikh", phone: "0345-7788990",
     status: "Ready", payment: "COD", type: "Delivery",
     items: [
-      { name: "Fry Daal Mash", qty: 2, price: 420, extra: "" },
-      { name: "Chicken Keema Karahi", qty: 1, price: 890, extra: "Less spicy" }
+      { name: "Yellow Daal Chawal with 1 Shami", qty: 2, price: 450, extra: "" },
+      { name: "Chicken Karahi", qty: 1, price: 850, extra: "Less spicy" }
     ],
-    subtotal: 1730, discount: 0, delivery: 80, tax: 90, net: 1900,
+    subtotal: 1750, discount: 0, delivery: 80, tax: 91, net: 1921,
     address: "Shop 8, Super Market, Block L",
     timeline: { received: "10:20", accepted: "10:21", prepared: "10:58", delivered: "" }
   },
@@ -76,43 +89,52 @@ KQ.ORDERS = [
     id: "KQ-1038", date: "2026-09-10T09:10:00", customer: "Asma Fatima", phone: "0312-9090887",
     status: "Accepted", payment: "COD", type: "Delivery",
     items: [
-      { name: "Beef Nihari", qty: 1, price: 780, extra: "Extra nalli" },
-      { name: "Tandoori Paratha", qty: 3, price: 80, extra: "" },
-      { name: "Doodh Patti Chai", qty: 2, price: 90, extra: "" }
+      { name: "Beef Haleem", qty: 1, price: 480, extra: "Extra fried onion" },
+      { name: "Tandoori Naan (4 pcs)", qty: 1, price: 200, extra: "" },
+      { name: "Cold Drink", qty: 2, price: 150, extra: "" }
     ],
-    subtotal: 1200, discount: 0, delivery: 80, tax: 64, net: 1344,
+    subtotal: 980, discount: 0, delivery: 80, tax: 53, net: 1113,
     address: "A-90, Block D, North Nazimabad",
     timeline: { received: "09:10", accepted: "09:12", prepared: "", delivered: "" }
   },
   {
     id: "KQ-1032", date: "2026-09-09T19:40:00", customer: "Sharjeel", phone: "0308-1122334",
     status: "Completed", payment: "JazzCash", type: "Delivery",
-    items: [{ name: "Chicken Karahi", qty: 1, price: 980, extra: "" }, { name: "Fresh Salad", qty: 1, price: 120, extra: "" }],
-    subtotal: 1100, discount: 0, delivery: 80, tax: 59, net: 1239,
+    items: [
+      { name: "Chicken Karahi", qty: 1, price: 850, extra: "" },
+      { name: "Homemade Chapati (4 pcs)", qty: 1, price: 120, extra: "" }
+    ],
+    subtotal: 970, discount: 0, delivery: 80, tax: 52, net: 1102,
     address: "Block H, North Nazimabad",
     timeline: { received: "19:40", accepted: "19:41", prepared: "20:10", delivered: "20:32" }
   },
   {
     id: "KQ-1028", date: "2026-09-08T18:05:00", customer: "Nubah", phone: "0331-4455667",
     status: "Cancelled", payment: "COD", type: "Delivery",
-    items: [{ name: "Malai Boti", qty: 1, price: 780, extra: "" }],
-    subtotal: 780, discount: 0, delivery: 80, tax: 43, net: 0,
+    items: [{ name: "Weekend Deal", qty: 1, price: 1450, extra: "" }],
+    subtotal: 1450, discount: 0, delivery: 80, tax: 76, net: 0,
     address: "Buffer Zone",
     timeline: { received: "18:05", accepted: "", prepared: "", delivered: "" }
   },
   {
     id: "KQ-1019", date: "2026-09-05T14:22:00", customer: "Farah", phone: "0300-9988776",
     status: "Completed", payment: "EasyPaisa", type: "Delivery",
-    items: [{ name: "Mixed BBQ Platter", qty: 1, price: 1890, extra: "" }],
-    subtotal: 1890, discount: 150, delivery: 80, tax: 91, net: 1911,
+    items: [
+      { name: "Friday Family Deal", qty: 1, price: 1250, extra: "" },
+      { name: "Shahi Kheer", qty: 1, price: 180, extra: "" }
+    ],
+    subtotal: 1430, discount: 100, delivery: 80, tax: 70, net: 1480,
     address: "Gulberg, Karachi",
     timeline: { received: "14:22", accepted: "14:23", prepared: "14:55", delivered: "15:20" }
   },
   {
     id: "KQ-1011", date: "2026-08-20T13:00:00", customer: "Mutahir", phone: "0322-6677889",
     status: "Completed", payment: "COD", type: "Pickup",
-    items: [{ name: "Chana Pulao", qty: 2, price: 380, extra: "" }, { name: "Chicken Aloo Salan", qty: 1, price: 750, extra: "" }],
-    subtotal: 1510, discount: 0, delivery: 0, tax: 75, net: 1585,
+    items: [
+      { name: "Daal Chawal", qty: 2, price: 350, extra: "" },
+      { name: "Chicken Aloo Salan", qty: 1, price: 450, extra: "" }
+    ],
+    subtotal: 1150, discount: 0, delivery: 0, tax: 57, net: 1207,
     address: "Pickup",
     timeline: { received: "13:00", accepted: "13:01", prepared: "13:30", delivered: "13:40" }
   }
@@ -120,13 +142,13 @@ KQ.ORDERS = [
 
 KQ.REVIEWS = [
   { id: "r1", name: "Zoja Ahmed", orderId: "KQ-1040", stars: 5, date: "2026-09-10", text: "Food was fresh and good quality. Packaging was neat. Will order again.", reply: "" },
-  { id: "r2", name: "Kamran Ali", orderId: "KQ-1041", stars: 5, date: "2026-09-10", text: "Order was perfect. Highly recommended. Keeps quality same.", reply: "Shukriya Kamran bhai — Kitchen Queen family!" },
-  { id: "r3", name: "Asma Fatima", orderId: "KQ-1038", stars: 4, date: "2026-09-10", text: "Baigan raita was super. A bit extra spicy in the salan, please reduce chilli.", reply: "" },
-  { id: "r4", name: "Sharjeel", orderId: "KQ-1032", stars: 5, date: "2026-09-09", text: "Bhai maza agaya. Hamesha ki tarah tasty khana.", reply: "Allah barkat de — thank you!" },
-  { id: "r5", name: "Nubah", orderId: "KQ-1028", stars: 3, date: "2026-09-08", text: "Taste is excellent just a little too spicy.", reply: "" },
-  { id: "r6", name: "Farah", orderId: "KQ-1019", stars: 5, date: "2026-09-05", text: "BBQ platter was outstanding. Juicy tikka.", reply: "" },
-  { id: "r7", name: "Aaqib", orderId: "KQ-1011", stars: 5, date: "2026-08-20", text: "One of the best home chefs out there.", reply: "JazakAllah — means a lot." },
-  { id: "r8", name: "Muniba", orderId: "KQ-1011", stars: 4, date: "2026-08-18", text: "Chana pulao and salad were best.", reply: "" }
+  { id: "r2", name: "Kamran Ali", orderId: "KQ-1041", stars: 5, date: "2026-09-10", text: "Order was perfect. Highly recommended. Quality stays consistent.", reply: "Thank you Kamran — Kitchen Queen family!" },
+  { id: "r3", name: "Asma Fatima", orderId: "KQ-1038", stars: 4, date: "2026-09-10", text: "Baingan raita was excellent. The salan was a little extra spicy — please reduce the chilli next time.", reply: "" },
+  { id: "r4", name: "Sharjeel", orderId: "KQ-1032", stars: 5, date: "2026-09-09", text: "Loved it. Tasty home-style food, just like always.", reply: "Thank you — glad it hit the spot!" },
+  { id: "r5", name: "Nubah", orderId: "KQ-1028", stars: 3, date: "2026-09-08", text: "Taste is excellent, just a little too spicy.", reply: "" },
+  { id: "r6", name: "Farah", orderId: "KQ-1019", stars: 5, date: "2026-09-05", text: "Family deal was outstanding. Biryani was fragrant and the drink was ice cold.", reply: "" },
+  { id: "r7", name: "Aaqib", orderId: "KQ-1011", stars: 5, date: "2026-08-20", text: "One of the best home kitchens in the city.", reply: "Thank you — that means a lot." },
+  { id: "r8", name: "Muniba", orderId: "KQ-1011", stars: 4, date: "2026-08-18", text: "Daal chawal and salad were the best part of the order.", reply: "" }
 ];
 
 KQ.HOURS_DEFAULT = {
