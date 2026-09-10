@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overview · Kitchen Queen Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-title="Dashboard Overview">
+  <div id="page">
+    <div class="grid g-4" id="stats"></div>
+    <div class="grid g-2" style="margin-top:16px">
+      <div class="card">
+        <div class="section-title"><h3>Smart Alerts</h3><a href="orders.html" class="btn btn-ghost btn-sm">View orders</a></div>
+        <div id="alerts"></div>
+      </div>
+      <div class="card">
+        <div class="section-title"><h3>Recent Reviews</h3><a href="reviews.html" class="btn btn-ghost btn-sm">All reviews</a></div>
+        <div id="revSnap"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="section-title"><h3>Today’s Orders</h3></div>
+      <div class="table-wrap">
+        <table class="data" id="todayTable"></table>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = KQApp.todayOrders();
+      const sales = today.reduce((s, o) => s + o.net, 0);
+      const low = KQApp.menu().filter(m => !m.stock);
+      const pending = (KQ.ORDERS || []).filter(o => !["Completed", "Cancelled"].includes(o.status) && o.date.startsWith("2026-09-10"));
+      document.getElementById("stats").innerHTML = `
+        <div class="card stat"><div><p>Total Daily Sales</p><h3>${KQApp.fmtPKR(sales)}</h3></div><div class="icon-bubble"><i class="bi bi-currency-exchange"></i></div></div>
+        <div class="card stat"><div><p>Total Orders</p><h3>${today.length} Orders</h3></div><div class="icon-bubble"><i class="bi bi-bag-heart-fill"></i></div></div>
+        <div class="card stat"><div><p>Store Rating</p><h3>★ 4.8 / 5.0</h3></div><div class="icon-bubble"><i class="bi bi-star-fill"></i></div></div>
+        <div class="card stat"><div><p>Pending Kitchen</p><h3>${pending.length} Live</h3></div><div class="icon-bubble"><i class="bi bi-fire"></i></div></div>`;
+      document.getElementById("alerts").innerHTML = [
+        ...low.map(m => `<div class="alert-item"><span class="badge b-out">Stock</span><div><strong>${m.name}</strong><div style="color:var(--muted);font-size:13px">Out of stock — turn on from Menu</div></div></div>`),
+        ...pending.slice(0, 4).map(o => `<div class="alert-item"><span class="badge ${KQApp.statusClass(o.status)}">${o.status}</span><div><strong>${o.id}</strong> · ${o.customer}<div style="color:var(--muted);font-size:13px">${o.items.map(i=>i.name).join(", ")}</div></div></div>`)
+      ].join("") || "<p style='color:var(--muted)'>No alerts right now.</p>";
+      const revs = KQApp.reviews().slice(0, 3);
+      document.getElementById("revSnap").innerHTML = revs.map(r => `
+        <div class="review"><strong>${r.name}</strong> <span class="stars">${"★".repeat(r.stars)}${"☆".repeat(5-r.stars)}</span>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px">${r.text}</div></div>`).join("");
+      document.getElementById("todayTable").innerHTML = `<thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody>` +
+        today.map(o => `<tr><td>${o.id}</td><td>${o.customer}</td><td>${o.items.length} items</td><td>${KQApp.fmtPKR(o.net)}</td><td><span class="badge ${KQApp.statusClass(o.status)}">${o.status}</span></td></tr>`).join("") + "</tbody>";
+    });
+  </script>
+</body>
+</html>

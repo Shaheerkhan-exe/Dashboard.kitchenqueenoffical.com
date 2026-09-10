@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orders · Kitchen Queen Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-title="Order Management">
+  <div id="page">
+    <div class="card">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-range="today">Today</button>
+        <button class="tab" data-range="yesterday">Yesterday</button>
+        <button class="tab" data-range="7">Last 7 Days</button>
+        <button class="tab" data-range="30">Last 30 Days</button>
+        <button class="tab" data-range="custom">Custom</button>
+      </div>
+      <div class="searchbar" style="margin-top:14px">
+        <input id="q" placeholder="Search Order ID or customer" />
+        <select id="st">
+          <option value="">All statuses</option>
+          <option>Accepted</option><option>Preparing</option><option>Ready</option>
+          <option>In Delivery</option><option>Completed</option><option>Cancelled</option>
+        </select>
+        <input type="date" id="from" style="display:none" />
+        <input type="date" id="to" style="display:none" />
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="table-wrap">
+        <table class="data" id="tbl"></table>
+      </div>
+    </div>
+  </div>
+  <div class="modal-back" id="modal">
+    <div class="modal" id="modalBody"></div>
+  </div>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    let range = "today";
+    const REF = new Date("2026-09-10T18:00:00");
+    function inRange(o) {
+      const d = new Date(o.date);
+      const day = (x) => x.toISOString().slice(0,10);
+      if (range === "today") return day(d) === "2026-09-10";
+      if (range === "yesterday") return day(d) === "2026-09-09";
+      if (range === "7") return (REF - d) / 86400000 <= 7;
+      if (range === "30") return (REF - d) / 86400000 <= 30;
+      if (range === "custom") {
+        const f = document.getElementById("from").value;
+        const t = document.getElementById("to").value;
+        if (!f && !t) return true;
+        const ds = day(d);
+        if (f && ds < f) return false;
+        if (t && ds > t) return false;
+        return true;
+      }
+      return true;
+    }
+    function filtered() {
+      const q = document.getElementById("q").value.toLowerCase();
+      const st = document.getElementById("st").value;
+      return KQ.ORDERS.filter(o => inRange(o) && (!st || o.status === st) && (!q || o.id.toLowerCase().includes(q) || o.customer.toLowerCase().includes(q)));
+    }
+    function render() {
+      const rows = filtered();
+      document.getElementById("tbl").innerHTML = `<thead><tr><th>ID</th><th>When</th><th>Customer</th><th>Pay</th><th>Net</th><th>Status</th><th></th></tr></thead><tbody>` +
+        rows.map(o => `<tr>
+          <td>${o.id}</td>
+          <td>${o.date.replace("T"," ").slice(0,16)}</td>
+          <td>${o.customer}<div style="color:var(--muted);font-size:12px">${o.type}</div></td>
+          <td><span class="badge ${o.payment==="COD"?"b-cod":"b-online"}">${o.payment}</span></td>
+          <td>${KQApp.fmtPKR(o.net)}</td>
+          <td><span class="badge ${KQApp.statusClass(o.status)}">${o.status === "Ready" ? "Ready for Pickup/Delivery" : o.status}</span></td>
+          <td><button class="btn btn-ghost btn-sm" onclick="openOrder('${o.id}')">Details</button></td>
+        </tr>`).join("") + (rows.length ? "" : `<tr><td colspan="7" style="color:var(--muted)">No orders in this filter.</td></tr>`) + "</tbody>";
+    }
+    window.openOrder = function (id) {
+      const o = KQ.ORDERS.find(x => x.id === id);
+      if (!o) return;
+      const t = o.timeline;
+      document.getElementById("modalBody").innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 style="font-family:var(--font-s);margin:0">${o.id}</h3>
+          <button class="btn btn-ghost btn-sm" onclick="closeModal()">Close</button>
+        </div>
+        <p style="color:var(--muted)">${o.customer} · ${o.phone}<br>${o.address}</p>
+        <div class="timeline">
+          <div class="t-step ${t.received?"done":""}">Received<br>${t.received||"—"}</div>
+          <div class="t-step ${t.accepted?"done":""}">Accepted<br>${t.accepted||"—"}</div>
+          <div class="t-step ${t.prepared?"done":""}">Prepared<br>${t.prepared||"—"}</div>
+          <div class="t-step ${t.delivered?"done":""}">Delivered<br>${t.delivered||"—"}</div>
+        </div>
+        <table class="data" style="min-width:0">
+          <thead><tr><th>Item</th><th>Qty</th><th>Add-on</th><th>Price</th></tr></thead>
+          <tbody>${o.items.map(i=>`<tr><td>${i.name}</td><td>${i.qty}</td><td>${i.extra||"—"}</td><td>${KQApp.fmtPKR(i.price*i.qty)}</td></tr>`).join("")}</tbody>
+        </table>
+        <div style="margin-top:12px;font-size:14px;line-height:1.8">
+          Subtotal: ${KQApp.fmtPKR(o.subtotal)}<br>
+          Discounts: − ${KQApp.fmtPKR(o.discount)}<br>
+          Delivery Fee: ${KQApp.fmtPKR(o.delivery)}<br>
+          Taxes: ${KQApp.fmtPKR(o.tax)}<br>
+          <strong>Net Earnings: ${KQApp.fmtPKR(o.net)}</strong>
+        </div>
+        <div style="margin-top:10px"><span class="badge ${o.payment==="COD"?"b-cod":"b-online"}">${o.payment === "COD" ? "Cash on Delivery (COD)" : o.payment}</span></div>`;
+      document.getElementById("modal").classList.add("show");
+    };
+    window.closeModal = () => document.getElementById("modal").classList.remove("show");
+    document.getElementById("modal").addEventListener("click", (e) => { if (e.target.id === "modal") closeModal(); });
+    document.querySelectorAll(".tab").forEach(btn => btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      range = btn.dataset.range;
+      const show = range === "custom";
+      document.getElementById("from").style.display = show ? "block" : "none";
+      document.getElementById("to").style.display = show ? "block" : "none";
+      render();
+    }));
+    ["q","st","from","to"].forEach(id => document.getElementById(id).addEventListener("input", render));
+    document.addEventListener("DOMContentLoaded", render);
+  </script>
+</body>
+</html>

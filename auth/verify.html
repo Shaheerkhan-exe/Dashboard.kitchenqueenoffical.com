@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verify OTP · Kitchen Queen Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card" style="text-align:center">
+      <div class="brand-row" style="justify-content:center">
+        <img src="../images/logo.svg" alt="Kitchen Queen" />
+        <div style="text-align:left">
+          <h1>Kitchen Queen</h1>
+          <p>WhatsApp OTP</p>
+        </div>
+      </div>
+      <h2>Verify your number</h2>
+      <p class="sub">6-digit code WhatsApp par bheja gaya hai.</p>
+      <span class="wa-pill"><i class="bi bi-whatsapp"></i> OTP sent via WhatsApp</span>
+      <div class="otp-row" id="otpRow">
+        <input maxlength="1" inputmode="numeric" />
+        <input maxlength="1" inputmode="numeric" />
+        <input maxlength="1" inputmode="numeric" />
+        <input maxlength="1" inputmode="numeric" />
+        <input maxlength="1" inputmode="numeric" />
+        <input maxlength="1" inputmode="numeric" />
+      </div>
+      <button class="btn btn-gold" id="verifyBtn">Verify & Enter Dashboard</button>
+      <div class="auth-foot"><a href="login.html">Back to login</a> · Demo hint: last generated OTP</div>
+    </div>
+  </div>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    const inputs = [...document.querySelectorAll("#otpRow input")];
+    inputs[0].focus();
+    inputs.forEach((inp, i) => {
+      inp.addEventListener("input", () => {
+        inp.value = inp.value.replace(/\D/g, "").slice(0, 1);
+        if (inp.value && i < inputs.length - 1) inputs[i + 1].focus();
+      });
+      inp.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && !inp.value && i > 0) inputs[i - 1].focus();
+      });
+    });
+    document.getElementById("verifyBtn").addEventListener("click", () => {
+      const code = inputs.map(i => i.value).join("");
+      const expected = sessionStorage.getItem("kq_pending_otp");
+      if (code.length !== 6) { alert("6 digit OTP likhein"); return; }
+      if (expected && code !== expected && code !== "123456") {
+        alert("Galat OTP. Demo ke liye 123456 bhi chalega.");
+        return;
+      }
+      const s = KQApp.session() || {};
+      s.verified = true;
+      KQApp.saveSession(s);
+      location.href = "../index.html";
+    });
+  </script>
+</body>
+</html>

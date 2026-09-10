@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu · Kitchen Queen Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-title="Menu & Stock Control">
+  <div id="page">
+    <div class="cat-pills" id="cats"></div>
+    <div class="menu-grid" id="grid"></div>
+  </div>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    let cat = "All";
+    function render() {
+      const items = KQApp.menu().filter(m => cat === "All" || m.category === cat);
+      const cats = ["All", "Curries", "Rice", "BBQ", "Beverages"];
+      document.getElementById("cats").innerHTML = cats.map(c => `<button class="tab ${c===cat?"active":""}" data-c="${c}">${c}</button>`).join("");
+      document.querySelectorAll("#cats .tab").forEach(b => b.onclick = () => { cat = b.dataset.c; render(); });
+      document.getElementById("grid").innerHTML = items.map(m => `
+        <article class="card menu-card">
+          <img src="${m.img}" alt="${m.name}" onerror="this.src='https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80'" />
+          <div class="menu-body">
+            <h4>${m.name}</h4>
+            <p style="margin:0 0 8px;color:var(--muted);font-size:13px">${m.desc}</p>
+            <div class="meta">
+              <span class="price">${KQApp.fmtPKR(m.price)}</span>
+              <span class="badge ${m.stock?"b-completed":"b-out"}">${m.stock?"In Stock":"Out of Stock"}</span>
+            </div>
+            <div class="status-toggle ${m.stock?"online":"offline"}" style="margin-top:12px;justify-content:space-between">
+              <span>${m.stock ? "Available" : "Hidden"}</span>
+              <label class="switch">
+                <input type="checkbox" ${m.stock?"checked":""} onchange="toggleStock('${m.id}', this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </article>`).join("");
+    }
+    window.toggleStock = (id, on) => {
+      KQApp.setStock(id, on);
+      KQApp.toast(on ? "Item is now In-Stock" : "Item marked Out-of-Stock");
+      render();
+    };
+    document.addEventListener("DOMContentLoaded", render);
+  </script>
+</body>
+</html>
