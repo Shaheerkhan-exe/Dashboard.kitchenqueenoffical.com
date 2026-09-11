@@ -143,12 +143,12 @@
       </header>`;
 
     const dock = `
-      <nav class="dock">
-        <a class="${navActive("index.html")}" href="index.html"><i class="bi bi-house-door-fill"></i>Home</a>
-        <a class="${navActive("orders.html")}" href="orders.html"><i class="bi bi-bag-fill"></i>Orders</a>
-        <a class="${navActive("menu.html")}" href="menu.html"><i class="bi bi-journal-richtext"></i>Menu</a>
-        <a class="${navActive("analytics.html")}" href="analytics.html"><i class="bi bi-bar-chart-fill"></i>Stats</a>
-        <a class="${navActive("settings.html")}" href="settings.html"><i class="bi bi-person-fill"></i>More</a>
+      <nav class="dock" aria-label="Mobile navigation">
+        <a class="dock-item ${navActive("index.html")}" href="index.html"><span class="dock-ico"><i class="bi bi-house-door-fill"></i></span><span class="dock-lbl">Home</span></a>
+        <a class="dock-item ${navActive("orders.html")}" href="orders.html"><span class="dock-ico"><i class="bi bi-bag-fill"></i></span><span class="dock-lbl">Orders</span></a>
+        <a class="dock-item ${navActive("menu.html")}" href="menu.html"><span class="dock-ico"><i class="bi bi-journal-richtext"></i></span><span class="dock-lbl">Menu</span></a>
+        <a class="dock-item ${navActive("analytics.html")}" href="analytics.html"><span class="dock-ico"><i class="bi bi-bar-chart-fill"></i></span><span class="dock-lbl">Stats</span></a>
+        <a class="dock-item ${navActive("settings.html")}" href="settings.html"><span class="dock-ico"><i class="bi bi-person-fill"></i></span><span class="dock-lbl">More</span></a>
       </nav>`;
 
     const wrap = document.createElement("div");

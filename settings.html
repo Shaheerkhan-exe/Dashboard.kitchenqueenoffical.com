@@ -30,10 +30,6 @@
         <div id="hols" style="margin-top:12px"></div>
       </div>
     </div>
-    <div class="card" style="margin-top:16px">
-      <div class="section-title"><h3>Weekly Opening Hours</h3><button class="btn btn-gold btn-sm" id="saveHours">Save Hours</button></div>
-      <div id="hours"></div>
-    </div>
   </div>
   <script src="assets/js/data.js"></script>
   <script src="assets/js/app.js"></script>
@@ -43,16 +39,6 @@
       document.getElementById("store").value = s.store;
       document.getElementById("email").value = s.email;
       document.getElementById("phone").value = s.phone;
-      const days = Object.keys(s.hours);
-      document.getElementById("hours").innerHTML = days.map(d => {
-        const h = s.hours[d];
-        return `<div class="hours-row">
-          <strong>${d}</strong>
-          <input type="time" data-d="${d}" data-k="open" value="${h.open}" />
-          <input type="time" data-d="${d}" data-k="close" value="${h.close}" />
-          <label style="font-size:13px;color:var(--muted)"><input type="checkbox" data-d="${d}" data-k="off" ${h.off?"checked":""}/> Closed</label>
-        </div>`;
-      }).join("");
       function paintHols() {
         const set = KQApp.settings();
         document.getElementById("hols").innerHTML = (set.holidays||[]).map((h,i)=>`
@@ -90,16 +76,6 @@
         }
         KQApp.saveSettings(set);
         KQApp.toast("Profile updated");
-      };
-      document.getElementById("saveHours").onclick = () => {
-        const set = KQApp.settings();
-        document.querySelectorAll("#hours [data-d]").forEach(el => {
-          const d = el.dataset.d, k = el.dataset.k;
-          if (k === "off") set.hours[d].off = el.checked;
-          else set.hours[d][k] = el.value;
-        });
-        KQApp.saveSettings(set);
-        KQApp.toast("Weekly hours saved");
       };
     });
   </script>
